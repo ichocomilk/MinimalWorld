@@ -1,0 +1,10 @@
+main: lc.minelc.minimalworld.MwPlugin
+name: MinimalWorld
+version: 0.0.1
+description: Converter world to Minimal World
+
+commands:
+  mw:
+    aliases: [ "minimalworld" ]
+    permission: "mw.command"
+    permission-message: "You don't have permission to execute this command"

@@ -1,0 +1,4 @@
+# We recommend using the default level of 3 or a level in the range from 6 to 9
+# for a reasonable tradeoff between compression speed and compressed data size.
+# By: 
+compression-level: 6 # Range: 0-22
