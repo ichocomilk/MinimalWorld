@@ -4,7 +4,7 @@
     Only store blocks id  
 </p>
 <br>
-<h1>How is based?</h1>
+<h1>How is made?</h1>
 <ul>
     <li>The file format contains a header</li>
     <li>(Header = Version of file)</li>
@@ -14,7 +14,7 @@
 <img src="github/mwformat.png" height="30%" width="24%">
 
 
-<h2>How is chunk data store?</h2>
+<h2>How is chunk data stored?</h2>
 <ol>
     <li>
         <h3>Header:</h3>
