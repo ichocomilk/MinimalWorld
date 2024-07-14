@@ -1,29 +1,36 @@
-# SchematicAPI
-Schematic system for MineLC.
-More faster than WorldEdit and with the possibility of async
+<h1>MinWorld</h1>
+<p>
+    Minimal world format (.minworld)
+    Only store blocks id  
+</p>
+<br>
+<h1>How is based?</h1>
+<ul>
+    <li>The file format contains a header</li>
+    <li>(Header = Version of file)</li>
+    <li>Amount of chunks to read</li>
+    <li>Chunks data</li>
+</ul>
+<img src="github/mwformat.png" height="30%" width="24%">
 
-## How get and load a schematic
 
-```
-// Get schematic
-final File file = SchematicStorage.get("schematicName.copy");
-
-// Load schematic
-final Schematic schematic = new SchematicFile().deserialize(file);
-```
-
-## How to serialize a schematic
-```
-final File destinationFile = ...
-final Schematic schematic = ...
-
-// Save a schematic file in a destination
-new SchematicFile().serialize(destinationFile, schematic);
-```
-## How to compile:
-> [!NOTE]
-> We need java 8 to compile
-1) Clone the repository
-2) Download spigot 1.8.8 ```https://getbukkit.org/get/hNiHm0tuqAg1Xg7w7zudk63uHr0xo48D```
-3) Create a folder named "lib" and Put the spigot
-4) Execute in your terminal "mvn install"
+<h2>How is chunk data store?</h2>
+<ol>
+    <li>
+        <h3>Header:</h3>
+        <p>Compressed X and Z.</p>
+        <p>Example: X: 4 and Z: 2</p>
+        <p>Compressed: X << 32 | Z - First 32 bits = X and other = Z</p> 
+    </li>
+    <li>
+        <h3>Amount chunks sections</h3>
+        <p>Byte that represent amount of valid section in chunk</p>
+        <p>(Valid section = no empty section, with blocks)</p>
+    </li>
+    <li>
+        <h3>Chunk sections:</h3>
+        <p>ID: a byte in range of (0-16)</p>
+        <p>A array of int16, contains all block data</p>
+    </li>
+</ol>
+<img src="github/chunkformat.png" height="30%" width="43%">

@@ -1,10 +1,10 @@
-package lc.minelc.minimalworld;
+package io.github.ichocomilk.minimalworld;
 
 import java.io.File;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import lc.minelc.minimalworld.commands.MwCommand;
+import io.github.ichocomilk.minimalworld.commands.MwCommand;
 
 public class MwPlugin extends JavaPlugin {
 

@@ -1,4 +1,4 @@
-package lc.minelc.minimalworld.commands;
+package io.github.ichocomilk.minimalworld.commands;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,7 +12,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.CraftChunk;
 
 import com.github.luben.zstd.Zstd;
-import lc.minelc.minimalworld.converter.ChunkToBuffer;
+
+import io.github.ichocomilk.minimalworld.converter.ChunkToBuffer;
 import net.minecraft.server.v1_8_R3.Chunk;
 
 public class MwCommand implements CommandExecutor {

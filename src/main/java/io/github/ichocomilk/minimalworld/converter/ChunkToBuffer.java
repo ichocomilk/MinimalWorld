@@ -1,6 +1,6 @@
-package lc.minelc.minimalworld.converter;
+package io.github.ichocomilk.minimalworld.converter;
 
-import lc.minelc.minimalworld.MwPlugin;
+import io.github.ichocomilk.minimalworld.MwPlugin;
 import net.minecraft.server.v1_8_R3.Chunk;
 import net.minecraft.server.v1_8_R3.ChunkSection;
 
