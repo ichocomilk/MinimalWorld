@@ -33,4 +33,4 @@
         <p>A array of int16, contains all block data</p>
     </li>
 </ol>
-<img src="github/chunkformat.png" height="30%" width="43%">
+<img src="github/chunkformat.png">
