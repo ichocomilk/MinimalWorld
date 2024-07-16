@@ -13,8 +13,9 @@ import org.bukkit.craftbukkit.v1_8_R3.CraftChunk;
 
 import com.github.luben.zstd.Zstd;
 
+import io.github.ichocomilk.minimalworld.MwPlugin;
+import io.github.ichocomilk.minimalworld.converter.Buffers;
 import io.github.ichocomilk.minimalworld.converter.ChunkToBuffer;
-import net.minecraft.server.v1_8_R3.Chunk;
 
 public class MwCommand implements CommandExecutor {
 
@@ -46,32 +47,38 @@ public class MwCommand implements CommandExecutor {
 
         long time = System.currentTimeMillis();
 
-        final Chunk[] nmsChunks = new Chunk[chunks.length];
-        for (int i = 0; i < chunks.length; i++) {
-            nmsChunks[i] = chunks[i].getHandle();
+        final ChunkToBuffer chunkToBuffer = new ChunkToBuffer(chunks);
+        byte[] chunkBuffer = chunkToBuffer.convert();
+        if (chunkBuffer == null) {
+            sender.sendMessage("§cTo many chunks loaded. Try unload");
+            return true;
         }
-
-        final ChunkToBuffer chunkToBuffer = new ChunkToBuffer(nmsChunks);
-        byte[] buffer = chunkToBuffer.convert();
 
         long finish = System.currentTimeMillis() - time;
         sender.sendMessage(
             "\n  §aData collected in: " + finish + "ms" +
             "\n  §7Amount Chunks: §b" + chunkToBuffer.getChunksParsed() + 
-            "\n  §7Uncompress buffer: §b" + buffer.length 
+            "\n  §7Uncompress buffer: §b" + chunkBuffer.length 
         );
 
         time = System.currentTimeMillis();
-        buffer = Zstd.compress(buffer, compression);
+        chunkBuffer = Zstd.compress(chunkBuffer, compression);
         finish = System.currentTimeMillis() - time;
 
         sender.sendMessage(
             "\n §aCompression finish in: " + finish +
-            "\n §7Buffer size: §3" + buffer.length);
+            "\n §7Buffer size: §3" + chunkBuffer.length);
 
         final File worldFile = new File(worldFolder, args[0] + ".minworld");
         try (FileOutputStream outputStream = new FileOutputStream(worldFile)) {
-            outputStream.write(buffer);
+            // File header (No compressed)
+            final byte[] header = new byte[5];
+            header[0] = MwPlugin.WORLD_VERSION;
+            Buffers.pushInt32(header, chunkToBuffer.getSize(), 1);
+            outputStream.write(header);
+
+            // Chunk data (compressed)
+            outputStream.write(chunkBuffer);
         } catch (IOException e) {
             sender.sendMessage("§cError on writing " + args[0] + ".minworld file... Check the console");
             Bukkit.getLogger().warning(e.getMessage());

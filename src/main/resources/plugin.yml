@@ -1,4 +1,4 @@
-main: lc.minelc.minimalworld.MwPlugin
+main: io.github.ichocomilk.minimalworld.MwPlugin
 name: MinimalWorld
 version: 0.0.1
 description: Converter world to Minimal World

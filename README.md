@@ -11,7 +11,7 @@
     <li>Amount of chunks to read</li>
     <li>Chunks data</li>
 </ul>
-<img src="github/mwformat.png" height="30%" width="24%">
+<img src="github/mwformat.png" >
 
 
 <h2>How is chunk data stored?</h2>
