@@ -17,10 +17,8 @@
 <h2>How is chunk data stored?</h2>
 <ol>
     <li>
-        <h3>Header:</h3>
-        <p>Compressed X and Z.</p>
-        <p>Example: X: 4 and Z: 2</p>
-        <p>Compressed: X << 32 | Z - First 32 bits = X and other = Z</p> 
+        <h3>Cords:</h3>
+        <p>X and Z</p>
     </li>
     <li>
         <h3>Amount chunks sections</h3>
